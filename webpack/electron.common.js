@@ -4,7 +4,13 @@ const ESLintWebpackPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
   target: 'electron-main',
-  entry: './src/electron.ts',
+  entry: {
+    electron: './src/electron.ts',
+    preload: './src/preload.ts',
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
+  },
   module: {
     rules: [
       {
@@ -30,7 +36,7 @@ module.exports = {
   ],
   output: {
     path: path.resolve(__dirname, '..', 'dist'),
-    filename: 'electron.js',
+    filename: '[name].js',
     clean: true,
   },
 };

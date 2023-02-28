@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import SomeIcon from '../components/SomeIcon';
 
@@ -53,17 +54,34 @@ const StyledIcon = styled(SomeIcon)`
   animation: ${IconAnimation} 5s linear infinite;
 `;
 
-export default () => (
-  <BodyGrid>
-    <StyledHeader>
-      Web application template
-    </StyledHeader>
-    <StyledMain>
-      <StyledHelloWorld>Hello world!</StyledHelloWorld>
-      <StyledIcon />
-    </StyledMain>
-    <footer>
-      Source code available at <a href="https://github.com/ntdesmond/react-webpack-ts">GitHub</a>!
-    </footer>
-  </BodyGrid>
-);
+export default () => {
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState('');
+
+  const onSendMail = async () => {
+    setError('');
+
+    window.main_process.sendMail('hehe', 'hoho').then(
+      () => setSuccess(true),
+      (err: Error) => setError(err.message),
+    );
+  };
+
+  return (
+    <BodyGrid>
+      <StyledHeader>
+        Web application template
+      </StyledHeader>
+      <StyledMain>
+        <StyledHelloWorld>Hello world!</StyledHelloWorld>
+        <StyledIcon />
+        <button type="button" onClick={onSendMail}>Send mail</button>
+        {success && <div>✅ Done!</div>}
+        {error && <div>{error}</div>}
+      </StyledMain>
+      <footer>
+        Source code available at <a href="https://github.com/ntdesmond/react-webpack-ts">GitHub</a>!
+      </footer>
+    </BodyGrid>
+  );
+};
