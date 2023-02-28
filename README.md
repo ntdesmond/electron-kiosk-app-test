@@ -1,12 +1,7 @@
-# react-webpack-ts
+# electron-kiosk-app-test
 
-This is a template of a web application that includes the following components configured to work together:
+This is the repo to test the following features:
 
-- **[Typescript](https://www.typescriptlang.org/)**
-- **[React 18](https://reactjs.org/)**
-- **[Webpack 5](https://webpack.js.org/)**
-- [ESLint](https://eslint.org/)
-- [styled-components](https://styled-components.com/)
-- [stylelint](https://stylelint.io/)
-
-Additionally, some VSCode configuration is provided in [.vscode](./.vscode) folder.
+- Mail sending from an Electron app
+- Publishing the app
+- Auto updates
