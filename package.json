@@ -1,7 +1,7 @@
 {
   "name": "electron-kiosk-app-test",
   "version": "1.0.1",
-  "description": "Testing functionality and update system af a kiosk Electron.js app",
+  "description": "Testing functionality and update system of a kiosk Electron.js app",
   "main": "build/electron.js",
   "scripts": {
     "start": "npm run build-dev-electron && concurrently -k \"npm run dev\" \"npm run electron\"",
