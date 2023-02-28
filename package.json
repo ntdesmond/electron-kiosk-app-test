@@ -13,11 +13,8 @@
     "lint:css": "stylelint \"./src/**/*{.css,.tsx,.ts}\""
   },
   "keywords": [
-    "typescript",
-    "react",
-    "webpack",
-    "eslint",
-    "template"
+    "kiosk",
+    "electron"
   ],
   "author": "ntdesmond",
   "license": "WTFPL",
