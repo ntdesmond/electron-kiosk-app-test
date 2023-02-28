@@ -1,7 +1,10 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { app, BrowserWindow, ipcMain } from 'electron';
 import path from 'path';
+import { autoUpdater } from 'electron-updater';
 import sendMail from './handlers/sendMail';
+
+autoUpdater.checkForUpdatesAndNotify();
 
 const isDevelopmentMode = process.env.NODE_ENV === 'development';
 
@@ -16,10 +19,9 @@ function createWindow() {
 
   window.removeMenu();
 
-  window.webContents.openDevTools({ mode: 'detach' });
-
   if (isDevelopmentMode) {
     window.loadURL('http://localhost:8080');
+    window.webContents.openDevTools({ mode: 'detach' });
   } else {
     window.loadFile(path.join(__dirname, 'index.html'));
   }
