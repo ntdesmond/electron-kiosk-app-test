@@ -5,6 +5,7 @@ const ESLintWebpackPlugin = require('eslint-webpack-plugin');
 const StylelintWebpackPlugin = require('stylelint-webpack-plugin');
 
 module.exports = {
+  target: 'electron-renderer',
   entry: './src/index.tsx',
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
@@ -13,7 +14,7 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
+        exclude: [/node_modules/, /electron.js/],
         use: ['babel-loader'],
       },
       {
@@ -33,7 +34,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src', 'index.html'),
+      template: path.join(__dirname, '..', 'src', 'index.html'),
+      publicPath: '',
     }),
     new webpack.DefinePlugin({
       'process.env': JSON.stringify(process.env),
@@ -47,9 +49,7 @@ module.exports = {
     }),
   ],
   output: {
-    path: path.join(__dirname, 'build'),
+    path: path.join(__dirname, '..', 'dist'),
     filename: '[name].[fullhash].bundle.js',
-    publicPath: '/',
-    clean: true,
   },
 };
