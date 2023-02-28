@@ -14,7 +14,8 @@
       "runtimeExecutable": "npm",
       "args": [
         "start"
-      ]
+      ],
+      "envFile": "${workspaceFolder}/.env"
     }
   ]
 }

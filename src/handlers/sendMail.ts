@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { createTransport } from 'nodemailer';
 import { MailOptions } from 'nodemailer/lib/smtp-pool';
 
@@ -45,14 +44,11 @@ export default async (subject: string, body: string) => {
   }
 
   const mailOptions: MailOptions = {
-    from: SMTP_SENDER_NAME,
+    from: `<${SMTP_USERNAME}> ${SMTP_SENDER_NAME}`,
     to: SMTP_RECIPIENT,
     html: body,
     subject,
   };
 
-  return transporter.sendMail(mailOptions).then(
-    () => console.log('Message sent!'),
-    () => console.log('Error sending mail.'),
-  );
+  return transporter.sendMail(mailOptions).then(() => {});
 };
