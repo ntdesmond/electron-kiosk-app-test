@@ -1,17 +1,20 @@
 import { app, BrowserWindow } from 'electron';
 
-const isDev = process.env.NODE_ENV === 'development';
+const isDevelopmentMode = process.env.NODE_ENV === 'development';
 
 function createWindow() {
-  const win = new BrowserWindow();
+  const window = new BrowserWindow({
+    kiosk: true,
+    autoHideMenuBar: true,
+  });
 
-  win.maximize();
+  window.removeMenu();
 
-  if (isDev) {
-    win.loadURL('http://localhost:8080');
-    win.webContents.openDevTools({ mode: 'detach' });
+  if (isDevelopmentMode) {
+    window.loadURL('http://localhost:8080');
+    window.webContents.openDevTools({ mode: 'detach' });
   } else {
-    win.loadFile('index.html');
+    window.loadFile('index.html');
   }
 }
 
