@@ -2,10 +2,11 @@
   "name": "electron-kiosk-app-test",
   "version": "1.0.0",
   "description": "Testing functionality and update system af a kiosk Electron.js app",
-  "main": "index.ts",
+  "main": "build/electron.js",
   "scripts": {
     "start": "npm run build-dev-electron && concurrently -k \"npm run dev\" \"npm run electron\"",
     "build": "webpack --config webpack/electron.prod.js --config webpack/webpack.prod.js --stats-error-details",
+    "dist": "electron-builder build",
     "electron": "electron dist/electron.js",
     "dev": "webpack serve --config webpack/webpack.dev.js",
     "build-dev-electron": "webpack --config webpack/electron.dev.js",
@@ -29,6 +30,8 @@
     "@typescript-eslint/eslint-plugin": "^5.47.0",
     "@typescript-eslint/parser": "^5.47.0",
     "concurrently": "^7.6.0",
+    "electron": "^23.1.1",
+    "electron-builder": "^23.6.0",
     "eslint": "^8.30.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
@@ -42,7 +45,6 @@
   },
   "dependencies": {
     "css-loader": "^6.7.3",
-    "electron": "^23.1.1",
     "eslint-webpack-plugin": "^3.2.0",
     "html-webpack-plugin": "^5.5.0",
     "nodemailer": "^6.9.1",
@@ -54,5 +56,21 @@
     "stylelint-webpack-plugin": "^3.3.0",
     "webpack": "^5.75.0",
     "webpack-merge": "^5.8.0"
+  },
+  "build": {
+    "appId": "io.github.ntdesmond.electron_test",
+    "files": [
+      "build/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowElevation": false,
+      "allowToChangeInstallationDirectory": true
+    }
   }
 }

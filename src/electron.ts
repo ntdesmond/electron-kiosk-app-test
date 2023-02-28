@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { app, BrowserWindow, ipcMain } from 'electron';
 import path from 'path';
 import sendMail from './handlers/sendMail';
@@ -15,11 +16,12 @@ function createWindow() {
 
   window.removeMenu();
 
+  window.webContents.openDevTools({ mode: 'detach' });
+
   if (isDevelopmentMode) {
     window.loadURL('http://localhost:8080');
-    window.webContents.openDevTools({ mode: 'detach' });
   } else {
-    window.loadFile('index.html');
+    window.loadFile(path.join(__dirname, 'index.html'));
   }
 }
 

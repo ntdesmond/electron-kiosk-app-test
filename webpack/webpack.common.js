@@ -6,7 +6,9 @@ const StylelintWebpackPlugin = require('stylelint-webpack-plugin');
 
 module.exports = {
   target: 'electron-renderer',
-  entry: './src/index.tsx',
+  entry: {
+    renderer: './src/index.tsx',
+  },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
@@ -49,7 +51,7 @@ module.exports = {
     }),
   ],
   output: {
-    path: path.join(__dirname, '..', 'dist'),
-    filename: '[name].[fullhash].bundle.js',
+    path: path.join(__dirname, '..', 'build'),
+    filename: '[name].js',
   },
 };
